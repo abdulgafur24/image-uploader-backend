@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: image_uploader_backend_development
+
+test:
+  <<: *default
+  database: image_uploader_backend_test
+
+
+production:
+  <<: *default
+  database: image_uploader_backend_production
+  username: image_uploader_backend
+  password: <%= ENV['IMAGE_UPLOADER_BACKEND_DATABASE_PASSWORD'] %>
